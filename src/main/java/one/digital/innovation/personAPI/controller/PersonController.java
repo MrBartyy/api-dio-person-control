@@ -3,6 +3,7 @@ package one.digital.innovation.personAPI.controller;
 import lombok.AllArgsConstructor;
 import one.digital.innovation.personAPI.dto.request.PersonDTO;
 import one.digital.innovation.personAPI.dto.response.MessageResponseDTO;
+import one.digital.innovation.personAPI.exception.PersonNotFoundException;
 import one.digital.innovation.personAPI.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,4 +30,9 @@ public class PersonController {
         return personService.listAll();
     }
 
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public PersonDTO findById(@PathVariable Long id) throws PersonNotFoundException {
+        return personService.findById(id);
+    }
 }
