@@ -17,9 +17,10 @@ public class PersonController {
 
     private final PersonService personService;
 
-   @GetMapping
-    public String getBook(){
-       return "API Test!";
-   }
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public MessageResponseDTO create(@RequestBody @Valid PersonDTO personDTO) {
+        return personService.create(personDTO);
+    }
 
 }
